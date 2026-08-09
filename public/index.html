@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaza Security - حماية سيرفرك خليها علينا </title>
+    <title>Gaza Security - حماية سيرفرات الديسكورد</title>
     <style>
         * {
             box-sizing: border-box;
@@ -17,7 +17,7 @@
             min-height: 100vh;
         }
 
-        /* النافبار */
+        /* القائمة العلوية */
         nav {
             display: flex;
             justify-content: space-between;
@@ -36,6 +36,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: #3b82f6;
         }
         .nav-links {
             display: flex;
@@ -66,7 +67,7 @@
             background-color: #334155;
         }
 
-        /* الصفحات (التبديل بين الرئيسية وصفحة الدخول) */
+        /* الصفحات */
         .page {
             display: none;
             padding-top: 120px;
@@ -75,12 +76,12 @@
             display: block;
         }
 
-        /* قسم الهيرو (الرئيسي) */
+        /* القسم الرئيسي */
         .hero {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 80px 80px;
+            padding: 80px;
             background: radial-gradient(circle at 75% 30%, #1d4ed8 0%, #050a15 60%);
             min-height: 70vh;
         }
@@ -119,7 +120,7 @@
             filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.5));
         }
 
-        /* قسم المميزات الثلاث */
+        /* قسم المميزات */
         .features {
             display: flex;
             justify-content: center;
@@ -149,7 +150,7 @@
             margin-bottom: 20px;
         }
 
-        /* تصميم صفحة تسجيل الدخول (LOGIN) */
+        /* صفحة تسجيل الدخول */
         .login-container {
             display: flex;
             justify-content: center;
@@ -160,7 +161,7 @@
             background-color: #0b1329;
             padding: 40px;
             border-radius: 16px;
-            width: 400px;
+            width: 420px;
             text-align: center;
             border: 1px solid #1e293b;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -198,25 +199,24 @@
 </head>
 <body>
 
-    <!-- القائمة العلوية (Navbar) -->
+    <!-- القائمة العلوية -->
     <nav>
-        <div class="logo">🛡️ GAZA SECURITY </div>
+        <div class="logo">🛡️ GAZA SECURITY</div>
         <div class="nav-links">
-            <a onclick="showPage('home')" id="link-home" class="active">HOME</a>
-            <a onclick="showPage('home')">PREMIUM ✨</a>
-            <a onclick="showPage('home')">SETUP</a>
-            <a onclick="showPage('home')">SUPPORT</a>
+            <a onclick="showPage('home')" id="link-home" class="active">الرئيسية</a>
+            <a onclick="showPage('home')">المميزات</a>
+            <a onclick="showPage('home')">الأوامر</a>
         </div>
-        <a onclick="showPage('login')" class="login-btn">LOGIN</a>
+        <a onclick="showPage('login')" class="login-btn">تسجيل الدخول</a>
     </nav>
 
-    <!-- صفحة الرئيسية (HOME PAGE) -->
+    <!-- الصفحة الرئيسية -->
     <div id="home" class="page active">
         <header class="hero">
             <div class="hero-text">
-                <h1>SECURITY BOT</h1>
-                <p>PROTECT YOUR DISCORD SERVER FROM RAIDERS, NUKERS AND ANY TYPE OF DAMAGE.</p>
-                <a href="#" class="https://discord.com/oauth2/authorize?client_id=1535766978554372207&permissions=8&integration_type=0&scope=bot">ADD SECURITY BOT</a>
+                <h1>GAZA SECURITY</h1>
+                <p>حماية متكاملة لسيرفرات الديسكورد ضد التخريب، الغارات، والاختراقات بأعلى كفاءة وأمان.</p>
+                <a href="https://discord.com/api/oauth2/authorize?client_id=1535766978554372207&scope=bot&permissions=8" target="_blank" class="add-bot-btn">إضافة البوت لسيرفرك</a>
             </div>
             <div class="hero-image">
                 🛡️
@@ -226,29 +226,31 @@
         <section class="features">
             <div class="feature-card">
                 <div class="feature-icon">⚙️</div>
-                <h3>POWERFUL MODERATION</h3>
-                <p>Experience secure server moderation without requiring Discord permissions. Our system provides controlled access to moderation tools while preventing privilege abuse.</p>
+                <h3>إشراف ذكي</h3>
+                <p>تحكم كامل بسيرفرك مع أدوات إشراف متقدمة تمنع إساءة استخدام الصلاحيات وتضمن بيئة آمنة للأعضاء.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💣</div>
-                <h3>ANTI NUKE</h3>
-                <p>Rest easy knowing your community is protected around the clock. Security Bot enables safe permission management while automatically punishing those who attempt abuse.</p>
+                <h3>حماية من التخريب</h3>
+                <p>نظام قوي يرصد محاولات التدمير والتخريب (Anti-Nuke) ويتخذ إجراءات فورية لحماية الرتب والقنوات.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🛡️</div>
-                <h3>ANTI RAID</h3>
-                <p>Never worry about bot raids disrupting your server again. Security Bot's customizable raid protection lets you define how it responds to potential threats.</p>
+                <h3>صد الغارات</h3>
+                <p>تصدي تلقائي لهجمات البوتات والوهميين (Anti-Raid) مع خيارات مخصصة للتحكم بالدخول.</p>
             </div>
         </section>
     </div>
 
-    <!-- صفحة تسجيل الدخول (LOGIN PAGE) -->
+    <!-- صفحة تسجيل الدخول -->
     <div id="login" class="page">
         <div class="login-container">
             <div class="login-box">
                 <h2>تسجيل الدخول</h2>
-                <p>قم بربط حسابك عبر ديسكورد للتحكم بإعدادات وحماية سيرفراتك</p>
-                <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify%20guilds" class="discord-login-btn">
+                <p>سجل دخولك بحساب ديسكورد للوصول إلى لوحة التحكم وإدارة إعدادات الحماية</p>
+                
+                <!-- تم دمج ايدي البوت هنا للـ OAuth2 -->
+                <a href="https://discord.com/api/oauth2/authorize?client_id=1535766978554372207&redirect_uri=https://coruscating-licorice-854001.netlify.app&response_type=code&scope=identify%20guilds" class="discord-login-btn">
                     <span>🎮</span> تسجيل الدخول بواسطة Discord
                 </a>
             </div>
@@ -256,7 +258,6 @@
     </div>
 
     <script>
-        // دالة التنقل بين الصفحات بسلاسة بدون إعادة تحميل
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
