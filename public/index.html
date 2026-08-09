@@ -12,9 +12,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #050a15;
+            background-color: #030612;
             color: white;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* القائمة العلوية */
@@ -22,102 +25,88 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 60px;
-            background-color: rgba(5, 10, 21, 0.95);
+            padding: 20px 50px;
+            background-color: rgba(10, 15, 30, 0.95);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #1a2035;
         }
         .logo {
+            font-size: 22px;
             font-weight: bold;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
             color: #3b82f6;
+            letter-spacing: 1px;
         }
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 30px;
         }
         .nav-links a {
             text-decoration: none;
-            color: #94a3b8;
+            color: #a0aec0;
             font-weight: 500;
             transition: color 0.3s;
+            font-size: 15px;
             cursor: pointer;
         }
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:hover {
             color: white;
         }
         .login-btn {
-            background-color: #1e293b;
+            background-color: #1a2035;
             color: white;
-            padding: 8px 22px;
+            padding: 8px 20px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            border: 1px solid #334155;
-            transition: background 0.3s;
-            cursor: pointer;
+            border: 1px solid #2d3748;
         }
         .login-btn:hover {
-            background-color: #334155;
-        }
-
-        /* الصفحات */
-        .page {
-            display: none;
-            padding-top: 120px;
-        }
-        .page.active {
-            display: block;
+            background-color: #2d3748;
         }
 
         /* القسم الرئيسي */
         .hero {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 80px;
-            background: radial-gradient(circle at 75% 30%, #1d4ed8 0%, #050a15 60%);
-            min-height: 70vh;
+            text-align: center;
+            padding: 180px 50px 80px;
+            background: radial-gradient(circle at center, #1e3a8a 0%, #030612 70%);
+            width: 100%;
         }
-        .hero-text {
-            max-width: 550px;
+        .hero-content {
+            max-width: 800px;
         }
-        .hero-text h1 {
-            font-size: 52px;
+        .hero-content h1 {
+            font-size: 64px;
             margin-bottom: 20px;
-            letter-spacing: 1px;
+            font-weight: 800;
         }
-        .hero-text p {
-            color: #94a3b8;
-            font-size: 18px;
+        .hero-content p {
+            color: #a0aec0;
+            font-size: 20px;
             line-height: 1.6;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
         .add-bot-btn {
-            background-color: #2563eb;
+            background-color: #3b82f6;
             color: white;
-            padding: 14px 32px;
+            padding: 18px 40px;
             border-radius: 8px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
-            transition: background 0.3s;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
             display: inline-block;
         }
         .add-bot-btn:hover {
-            background-color: #1d4ed8;
-        }
-        .hero-image {
-            font-size: 180px;
-            color: #3b82f6;
-            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.5));
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
         }
 
         /* قسم المميزات */
@@ -125,151 +114,66 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            padding: 80px 60px;
-            background-color: #030712;
+            padding: 80px 50px;
+            width: 100%;
+            background-color: #0a0f20;
         }
         .feature-card {
-            background-color: #0b1329;
-            padding: 40px 30px;
+            background-color: #111827;
+            padding: 30px;
             border-radius: 12px;
-            width: 32%;
-            border: 1px solid #1e293b;
+            width: 30%;
+            border: 1px solid #1f2937;
         }
         .feature-card h3 {
-            font-size: 22px;
+            font-size: 20px;
             margin-bottom: 15px;
         }
         .feature-card p {
-            color: #94a3b8;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-        .feature-icon {
-            font-size: 35px;
-            color: #3b82f6;
-            margin-bottom: 20px;
-        }
-
-        /* صفحة تسجيل الدخول */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80vh;
-        }
-        .login-box {
-            background-color: #0b1329;
-            padding: 40px;
-            border-radius: 16px;
-            width: 420px;
-            text-align: center;
-            border: 1px solid #1e293b;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        .login-box h2 {
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        .login-box p {
-            color: #94a3b8;
-            margin-bottom: 30px;
+            color: #9ca3af;
             font-size: 14px;
-        }
-        .discord-login-btn {
-            background-color: #5865F2;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            transition: background 0.3s;
-            text-decoration: none;
-        }
-        .discord-login-btn:hover {
-            background-color: #4752c4;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-    <!-- القائمة العلوية -->
+    <!-- النافبار -->
     <nav>
         <div class="logo">🛡️ GAZA SECURITY</div>
         <div class="nav-links">
-            <a onclick="showPage('home')" id="link-home" class="active">الرئيسية</a>
-            <a onclick="showPage('home')">المميزات</a>
-            <a onclick="showPage('home')">الأوامر</a>
+            <a href="#">الرئيسية</a>
+            <a href="#">المميزات</a>
+            <a href="#">الأوامر</a>
+            <a href="#">الدعم الفني</a>
         </div>
-        <a onclick="showPage('login')" class="login-btn">تسجيل الدخول</a>
+        <a href="https://discord.com/api/oauth2/authorize?client_id=1535766978554372207&scope=bot&permissions=8" target="_blank" class="login-btn">إضافة البوت</a>
     </nav>
 
-    <!-- الصفحة الرئيسية -->
-    <div id="home" class="page active">
-        <header class="hero">
-            <div class="hero-text">
-                <h1>GAZA SECURITY</h1>
-                <p>حماية متكاملة لسيرفرات الديسكورد ضد التخريب، الغارات، والاختراقات بأعلى كفاءة وأمان.</p>
-                <a href="https://discord.com/api/oauth2/authorize?client_id=1535766978554372207&scope=bot&permissions=8" target="_blank" class="add-bot-btn">إضافة البوت لسيرفرك</a>
-            </div>
-            <div class="hero-image">
-                🛡️
-            </div>
-        </header>
-
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">⚙️</div>
-                <h3>إشراف ذكي</h3>
-                <p>تحكم كامل بسيرفرك مع أدوات إشراف متقدمة تمنع إساءة استخدام الصلاحيات وتضمن بيئة آمنة للأعضاء.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💣</div>
-                <h3>حماية من التخريب</h3>
-                <p>نظام قوي يرصد محاولات التدمير والتخريب (Anti-Nuke) ويتخذ إجراءات فورية لحماية الرتب والقنوات.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>صد الغارات</h3>
-                <p>تصدي تلقائي لهجمات البوتات والوهميين (Anti-Raid) مع خيارات مخصصة للتحكم بالدخول.</p>
-            </div>
-        </section>
-    </div>
-
-    <!-- صفحة تسجيل الدخول -->
-    <div id="login" class="page">
-        <div class="login-container">
-            <div class="login-box">
-                <h2>تسجيل الدخول</h2>
-                <p>سجل دخولك بحساب ديسكورد للوصول إلى لوحة التحكم وإدارة إعدادات الحماية</p>
-                
-                <!-- تم دمج ايدي البوت هنا للـ OAuth2 -->
-                <a href="https://discord.com/api/oauth2/authorize?client_id=1535766978554372207&redirect_uri=https://coruscating-licorice-854001.netlify.app&response_type=code&scope=identify%20guilds" class="discord-login-btn">
-                    <span>🎮</span> تسجيل الدخول بواسطة Discord
-                </a>
-            </div>
+    <!-- القسم الرئيسي -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>GAZA SECURITY</h1>
+            <p>احمِ سيرفر ديسكورد الخاص بك من المخربين، الهجمات الوهمية، وأي نوع من أنواع التدمير بأعلى كفاءة وأمان.</p>
+            <a href="https://discord.com/api/oauth2/authorize?client_id=1535766978554372207&scope=bot&permissions=8" target="_blank" class="add-bot-btn">إضافة بوت الحماية</a>
         </div>
-    </div>
+    </header>
 
-    <script>
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            
-            if(pageId === 'home') {
-                document.getElementById('link-home').classList.add('active');
-            } else {
-                document.getElementById('link-home').classList.remove('active');
-            }
-            window.scrollTo(0, 0);
-        }
-    </script>
+    <!-- قسم المميزات -->
+    <section class="features">
+        <div class="feature-card">
+            <h3>⚙️ إشراف قوي وآمن</h3>
+            <p>جرب إشرافاً احترافياً للسيرفر دون الحاجة لمنح صلاحيات خطيرة. يمنحك نظامنا تحكماً كاملاً بأمان تام.</p>
+        </div>
+        <div class="feature-card">
+            <h3>💣 مانع التخريب (Anti-Nuke)</h3>
+            <p>كن مطمئناً لأن مجتمعك محمي على مدار الساعة ضد محاولات العبث والتدمير ومعاقبة المخربين تلقائياً.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🛡️ مانع الغارات (Anti-Raid)</h3>
+            <p>لا تقلق أبداً بشأن هجمات البوتات والأعضاء الوهميين، وحدد بنفسك طريقة التصدي للتهديدات المحتملة.</p>
+        </div>
+    </section>
 
 </body>
 </html>
