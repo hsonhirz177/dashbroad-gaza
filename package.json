@@ -1,0 +1,13 @@
+{
+  "name": "gaza-security",
+  "version": "1.0.0",
+  "description": "Gaza Security Bot & Dashboard",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "express": "^4.19.2"
+  }
+}

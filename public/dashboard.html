@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaza Security - لوحة التحكم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Tahoma, sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+        .servers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .server-card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+        .server-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+        .server-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #f8fafc;
+        }
+        .server-status {
+            font-size: 14px;
+            color: #22c55e;
+            margin-bottom: 20px;
+            background: rgba(34, 197, 94, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .btn-manage {
+            background-color: #0284c7;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .btn-manage:hover {
+            background-color: #0369a1;
+        }
+        .alert-box {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            border: 1px solid #334155;
+        }
+        .btn-login {
+            background-color: #5865F2;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎛️ لوحة تحكم سيرفرات Gaza Security</h1>
+        <p>قم بإدارة حماية وإعدادات سيرفراتك بكل سهولة ويسر</p>
+    </header>
+
+    <div id="servers-container" class="servers-grid">
+        <div class="alert-box">
+            <h3>⏳ جاري التحقق من حسابك وجلب سيرفراتك...</h3>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const serversData = urlParams.get('servers');
+        const container = document.getElementById('servers-container');
+
+        if (serversData) {
+            try {
+                const guilds = JSON.parse(decodeURIComponent(serversData));
+                container.innerHTML = '';
+
+                if (guilds.length === 0) {
+                    container.innerHTML = `
+                        <div class="alert-box" style="grid-column: 1 / -1;">
+                            <h3>⚠️ لا توجد سيرفرات تمتلكها أو أن بوت Gaza Security غير موجود فيها!</h3>
+                            <p style="margin-top: 10px;">تأكد من دعوة البوت لسيرفرك ومن ثم أعد تسجيل الدخول.</p>
+                            <a href="/auth/discord" class="btn-login">تسجيل الدخول مجدداً</a>
+                        </div>
+                    `;
+                } else {
+                    guilds.forEach(guild => {
+                        container.innerHTML += `
+                            <div class="server-card">
+                                <h3>${guild.name}</h3>
+                                <div class="server-status">البوت مفعل ومتصل ✅</div>
+                                <br>
+                                <a href="/control.html?guildId=${guild.id}" class="btn-manage">
+                                    <i class="fa-solid fa-shield-halved"></i> إدارة الحماية
+                                </a>
+                            </div>
+                        `;
+                    });
+                }
+            } catch (e) {
+                container.innerHTML = `
+                    <div class="alert-box" style="grid-column: 1 / -1;">
+                        <h3>❌ حدث خطأ في تحليل بيانات السيرفرات.</h3>
+                        <a href="/auth/discord" class="btn-login">إعادة تسجيل الدخول</a>
+                    </div>
+                `;
+            }
+        } else {
+            container.innerHTML = `
+                <div class="alert-box" style="grid-column: 1 / -1;">
+                    <h3>⚠️ يجب عليك تسجيل الدخول أولاً عبر حساب ديسكورد!</h3>
+                    <p style="margin-top: 10px; color: #94a3b8;">للتحكم بسيرفراتك وعرضها، يرجى تسجيل الدخول بحسابك.</p>
+                    <a href="/auth/discord" class="btn-login">
+                        <i class="fab fa-discord"></i> تسجيل الدخول بواسطة ديسكورد
+                    </a>
+                </div>
+            `;
+        }
+    </script>
+
+</body>
+</html>
