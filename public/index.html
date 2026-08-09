@@ -3,92 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaza Security Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Security Bot - حماية سيرفر الديسكورد</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #050a15;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* النافبار */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background-color: rgba(5, 10, 21, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: white;
+        }
+        .login-btn {
+            background-color: #1e293b;
+            color: white;
+            padding: 8px 22px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #334155;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        .login-btn:hover {
+            background-color: #334155;
+        }
+
+        /* الصفحات (التبديل بين الرئيسية وصفحة الدخول) */
+        .page {
+            display: none;
+            padding-top: 120px;
+        }
+        .page.active {
+            display: block;
+        }
+
+        /* قسم الهيرو (الرئيسي) */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 80px;
+            background: radial-gradient(circle at 75% 30%, #1d4ed8 0%, #050a15 60%);
+            min-height: 70vh;
+        }
+        .hero-text {
+            max-width: 550px;
+        }
+        .hero-text h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .hero-text p {
+            color: #94a3b8;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+        .add-bot-btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        .add-bot-btn:hover {
+            background-color: #1d4ed8;
+        }
+        .hero-image {
+            font-size: 180px;
+            color: #3b82f6;
+            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.5));
+        }
+
+        /* قسم المميزات الثلاث */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 80px 60px;
+            background-color: #030712;
+        }
+        .feature-card {
+            background-color: #0b1329;
+            padding: 40px 30px;
+            border-radius: 12px;
+            width: 32%;
+            border: 1px solid #1e293b;
+        }
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        .feature-card p {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .feature-icon {
+            font-size: 35px;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+
+        /* تصميم صفحة تسجيل الدخول (LOGIN) */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .login-box {
+            background-color: #0b1329;
+            padding: 40px;
+            border-radius: 16px;
+            width: 400px;
+            text-align: center;
+            border: 1px solid #1e293b;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .login-box h2 {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .login-box p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .discord-login-btn {
+            background-color: #5865F2;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        .discord-login-btn:hover {
+            background-color: #4752c4;
+        }
+    </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- قسم الهيدر وأزرار الروابط -->
-        <header>
-            <h1>🛡️ Gaza Security System</h1>
-            <p>نظام الحماية المتقدم لحماية سيرفرات ديسكورد من الثغرات والاختراقات</p>
-            
-            <div class="action-buttons">
-                <a href="https://discord.com/api/oauth2/authorize?client_id=ضع_آيدي_البوت_هنا&permissions=8&scope=bot%20applications.commands" target="_blank" class="btn btn-invite">➕ إضافة البوت (Invite)</a>
-                <a href="https://discord.gg/رابط_سيرفرك" target="_blank" class="btn btn-support">💬 سيرفر الدعم الفني</a>
+
+    <!-- القائمة العلوية (Navbar) -->
+    <nav>
+        <div class="logo">🛡️ SECURITY BOT</div>
+        <div class="nav-links">
+            <a onclick="showPage('home')" id="link-home" class="active">HOME</a>
+            <a onclick="showPage('home')">PREMIUM ✨</a>
+            <a onclick="showPage('home')">SETUP</a>
+            <a onclick="showPage('home')">SUPPORT</a>
+        </div>
+        <a onclick="showPage('login')" class="login-btn">LOGIN</a>
+    </nav>
+
+    <!-- صفحة الرئيسية (HOME PAGE) -->
+    <div id="home" class="page active">
+        <header class="hero">
+            <div class="hero-text">
+                <h1>SECURITY BOT</h1>
+                <p>PROTECT YOUR DISCORD SERVER FROM RAIDERS, NUKERS AND ANY TYPE OF DAMAGE.</p>
+                <a href="#" class="add-bot-btn">ADD SECURITY BOT</a>
+            </div>
+            <div class="hero-image">
+                🛡️
             </div>
         </header>
 
-        <!-- قسم الإحصائيات الحية -->
-        <main class="stats-grid">
-            <div class="card">
-                <h3>حالة البوت</h3>
-                <p id="bot-status" class="status-offline">⚪ جاري الاتصال...</p>
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3>POWERFUL MODERATION</h3>
+                <p>Experience secure server moderation without requiring Discord permissions. Our system provides controlled access to moderation tools while preventing privilege abuse.</p>
             </div>
-            <div class="card">
-                <h3>السيرفرات المحمية</h3>
-                <p id="server-count">0</p>
+            <div class="feature-card">
+                <div class="feature-icon">💣</div>
+                <h3>ANTI NUKE</h3>
+                <p>Rest easy knowing your community is protected around the clock. Security Bot enables safe permission management while automatically punishing those who attempt abuse.</p>
             </div>
-            <div class="card">
-                <h3>إجمالي الأعضاء</h3>
-                <p id="user-count">0</p>
-            </div>
-            <div class="card">
-                <h3>سرعة الاستجابة</h3>
-                <p id="bot-ping">0 ms</p>
-            </div>
-        </main>
-
-        <!-- قسم مميزات البوت -->
-        <section class="features-section">
-            <h2>✨ مميزات نظام Gaza Security</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🔒 حماية القنوات</h3>
-                    <p>رصد وتنبيه فوري عند حذف أو تعديل أي قناة حساسة داخل السيرفر لمعرفة الفاعل.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🛡️ حماية الرتب</h3>
-                    <p>مراقبة صارمة لصلاحيات الرتب وتنبيه الإدارة عند محاولة العبث برتب السيرفر الأساسية.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🤖 فلترة البوتات</h3>
-                    <p>التحقق من دخول أي بوت جديد للسيرفر لمنع دخول البوتات المخترقة (Anti-Nuke).</p>
-                </div>
-                <div class="feature-card">
-                    <h3>⚡ أداء سريع وآمن</h3>
-                    <p>يعمل على مدار الساعة 24/7 مع استجابة فورية وسجل (Logs) منظم لكل الأحداث.</p>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>ANTI RAID</h3>
+                <p>Never worry about bot raids disrupting your server again. Security Bot's customizable raid protection lets you define how it responds to potential threats.</p>
             </div>
         </section>
     </div>
 
+    <!-- صفحة تسجيل الدخول (LOGIN PAGE) -->
+    <div id="login" class="page">
+        <div class="login-container">
+            <div class="login-box">
+                <h2>تسجيل الدخول</h2>
+                <p>قم بربط حسابك عبر ديسكورد للتحكم بإعدادات وحماية سيرفراتك</p>
+                <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify%20guilds" class="discord-login-btn">
+                    <span>🎮</span> تسجيل الدخول بواسطة Discord
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // دالة لجلب الإحصائيات الحية للبوت
-        async function fetchStats() {
-            try {
-                const response = await fetch('/api/stats');
-                const data = await response.json();
-
-                const statusEl = document.getElementById('bot-status');
-                if (data.online) {
-                    statusEl.textContent = `🟢 متصل (${data.tag})`;
-                    statusEl.className = 'status-online';
-                } else {
-                    statusEl.textContent = '🔴 غير متصل';
-                    statusEl.className = 'status-offline';
-                }
-
-                document.getElementById('server-count').textContent = data.servers;
-                document.getElementById('user-count').textContent = data.users;
-                document.getElementById('bot-ping').textContent = `${data.ping} ms`;
-            } catch (error) {
-                console.error('Error fetching stats:', error);
+        // دالة التنقل بين الصفحات بسلاسة بدون إعادة تحميل
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            if(pageId === 'home') {
+                document.getElementById('link-home').classList.add('active');
+            } else {
+                document.getElementById('link-home').classList.remove('active');
             }
+            window.scrollTo(0, 0);
         }
-
-        fetchStats();
-        setInterval(fetchStats, 5000);
     </script>
+
 </body>
 </html>
