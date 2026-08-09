@@ -1,0 +1,43 @@
+.features-section {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.features-section h2 {
+    color: #58a6ff;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.feature-card {
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    text-align: right;
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    border-color: #58a6ff;
+    transform: translateY(-3px);
+}
+
+.feature-card h3 {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #8b949e;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaza Security Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- قسم الهيدر وأزرار الروابط -->
+        <header>
+            <h1>🛡️ Gaza Security System</h1>
+            <p>نظام الحماية المتقدم لحماية سيرفرات ديسكورد من الثغرات والاختراقات</p>
+            
+            <div class="action-buttons">
+                <a href="https://discord.com/api/oauth2/authorize?client_id=ضع_آيدي_البوت_هنا&permissions=8&scope=bot%20applications.commands" target="_blank" class="btn btn-invite">➕ إضافة البوت (Invite)</a>
+                <a href="https://discord.gg/رابط_سيرفرك" target="_blank" class="btn btn-support">💬 سيرفر الدعم الفني</a>
+            </div>
+        </header>
+
+        <!-- قسم الإحصائيات الحية -->
+        <main class="stats-grid">
+            <div class="card">
+                <h3>حالة البوت</h3>
+                <p id="bot-status" class="status-offline">⚪ جاري الاتصال...</p>
+            </div>
+            <div class="card">
+                <h3>السيرفرات المحمية</h3>
+                <p id="server-count">0</p>
+            </div>
+            <div class="card">
+                <h3>إجمالي الأعضاء</h3>
+                <p id="user-count">0</p>
+            </div>
+            <div class="card">
+                <h3>سرعة الاستجابة</h3>
+                <p id="bot-ping">0 ms</p>
+            </div>
+        </main>
+
+        <!-- قسم مميزات البوت -->
+        <section class="features-section">
+            <h2>✨ مميزات نظام Gaza Security</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🔒 حماية القنوات</h3>
+                    <p>رصد وتنبيه فوري عند حذف أو تعديل أي قناة حساسة داخل السيرفر لمعرفة الفاعل.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🛡️ حماية الرتب</h3>
+                    <p>مراقبة صارمة لصلاحيات الرتب وتنبيه الإدارة عند محاولة العبث برتب السيرفر الأساسية.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🤖 فلترة البوتات</h3>
+                    <p>التحقق من دخول أي بوت جديد للسيرفر لمنع دخول البوتات المخترقة (Anti-Nuke).</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ أداء سريع وآمن</h3>
+                    <p>يعمل على مدار الساعة 24/7 مع استجابة فورية وسجل (Logs) منظم لكل الأحداث.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // دالة لجلب الإحصائيات الحية للبوت
+        async function fetchStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const data = await response.json();
+
+                const statusEl = document.getElementById('bot-status');
+                if (data.online) {
+                    statusEl.textContent = `🟢 متصل (${data.tag})`;
+                    statusEl.className = 'status-online';
+                } else {
+                    statusEl.textContent = '🔴 غير متصل';
+                    statusEl.className = 'status-offline';
+                }
+
+                document.getElementById('server-count').textContent = data.servers;
+                document.getElementById('user-count').textContent = data.users;
+                document.getElementById('bot-ping').textContent = `${data.ping} ms`;
+            } catch (error) {
+                console.error('Error fetching stats:', error);
+            }
+        }
+
+        fetchStats();
+        setInterval(fetchStats, 5000);
+    </script>
+</body>
+</html>
