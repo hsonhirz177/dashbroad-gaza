@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth; /* الانتقال السلس عند الضغط على الروابط */
         }
         body {
             background-color: #030612;
@@ -62,6 +63,7 @@
             text-decoration: none;
             font-weight: 600;
             border: 1px solid #2d3748;
+            transition: background 0.3s;
         }
         .login-btn:hover {
             background-color: #2d3748;
@@ -73,7 +75,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 180px 50px 80px;
+            padding: 180px 50px 100px;
             background: radial-gradient(circle at center, #1e3a8a 0%, #030612 70%);
             width: 100%;
         }
@@ -109,43 +111,108 @@
             box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
         }
 
+        /* قسم العناوين */
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: white;
+        }
+
         /* قسم المميزات */
         .features {
+            padding: 100px 50px;
+            width: 100%;
+            background-color: #030612;
+        }
+        .features-grid {
             display: flex;
             justify-content: center;
             gap: 30px;
-            padding: 80px 50px;
-            width: 100%;
-            background-color: #0a0f20;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .feature-card {
             background-color: #111827;
-            padding: 30px;
+            padding: 35px;
             border-radius: 12px;
-            width: 30%;
+            width: 320px;
             border: 1px solid #1f2937;
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
         }
         .feature-card h3 {
             font-size: 20px;
             margin-bottom: 15px;
+            color: #3b82f6;
         }
         .feature-card p {
             color: #9ca3af;
             font-size: 14px;
             line-height: 1.6;
         }
+
+        /* قسم الأوامر */
+        .commands {
+            padding: 100px 50px;
+            width: 100%;
+            background-color: #070b19;
+        }
+        .commands-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .command-item {
+            background-color: #111827;
+            padding: 20px 30px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .command-name {
+            font-family: monospace;
+            background-color: #1e293b;
+            color: #60a5fa;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .command-desc {
+            color: #9ca3af;
+            font-size: 15px;
+        }
+
+        /* تذييل الصفحة */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+            background-color: #030612;
+            border-top: 1px solid #1a2035;
+            width: 100%;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- النافبار -->
+    <!-- القائمة العلوية -->
     <nav>
         <div class="logo">🛡️ GAZA SECURITY</div>
         <div class="nav-links">
             <a href="#">الرئيسية</a>
-            <a href="#">المميزات</a>
-            <a href="#">الأوامر</a>
-            <a href="#">الدعم الفني</a>
+            <a href="#features">المميزات</a>
+            <a href="#commands">الأوامر</a>
         </div>
         <a href="https://discord.com/api/oauth2/authorize?client_id=1535766978554372207&scope=bot&permissions=8" target="_blank" class="login-btn">إضافة البوت</a>
     </nav>
@@ -160,20 +227,51 @@
     </header>
 
     <!-- قسم المميزات -->
-    <section class="features">
-        <div class="feature-card">
-            <h3>⚙️ إشراف قوي وآمن</h3>
-            <p>جرب إشرافاً احترافياً للسيرفر دون الحاجة لمنح صلاحيات خطيرة. يمنحك نظامنا تحكماً كاملاً بأمان تام.</p>
-        </div>
-        <div class="feature-card">
-            <h3>💣 مانع التخريب (Anti-Nuke)</h3>
-            <p>كن مطمئناً لأن مجتمعك محمي على مدار الساعة ضد محاولات العبث والتدمير ومعاقبة المخربين تلقائياً.</p>
-        </div>
-        <div class="feature-card">
-            <h3>🛡️ مانع الغارات (Anti-Raid)</h3>
-            <p>لا تقلق أبداً بشأن هجمات البوتات والأعضاء الوهميين، وحدد بنفسك طريقة التصدي للتهديدات المحتملة.</p>
+    <section id="features" class="features">
+        <h2 class="section-title">مميزات البوت</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>⚙️ إشراف قوي وآمن</h3>
+                <p>جرب إشرافاً احترافياً للسيرفر دون الحاجة لمنح صلاحيات خطيرة. يمنحك نظامنا تحكماً كاملاً بأمان تام.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💣 مانع التخريب (Anti-Nuke)</h3>
+                <p>كن مطمئناً لأن مجتمعك محمي على مدار الساعة ضد محاولات العبث والتدمير ومعاقبة المخربين تلقائياً.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🛡️ مانع الغارات (Anti-Raid)</h3>
+                <p>لا تقلق أبداً بشأن هجمات البوتات والأعضاء الوهميين، وحدد بنفسك طريقة التصدي للتهديدات المحتملة.</p>
+            </div>
         </div>
     </section>
+
+    <!-- قسم الأوامر -->
+    <section id="commands" class="commands">
+        <h2 class="section-title">أوامر البوت</h2>
+        <div class="commands-list">
+            <div class="command-item">
+                <span class="command-name">/help</span>
+                <span class="command-desc">عرض قائمة الأوامر المساعدة وطريقة استخدام البوت.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/security setup</span>
+                <span class="command-desc">إعداد وتفعيل نظام الحماية الكامل في السيرفر.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/antinuke on/off</span>
+                <span class="command-desc">تفعيل أو تعطيل حماية النوك والتدمير التلقائي.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/antiraid on/off</span>
+                <span class="command-desc">حماية السيرفر ضد الهجمات الوهمية ودخول البوتات المشبوهة.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- حقوق النشر -->
+    <footer>
+        جميع الحقوق محفوظة © Gaza Security 2026
+    </footer>
 
 </body>
 </html>
